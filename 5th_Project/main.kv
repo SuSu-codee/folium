@@ -1,0 +1,218 @@
+<WindowManager>:
+	RegistrationWindow:
+		name: "main"
+	LoginWindow:
+		name: "login"
+	DashboardWindow:
+		name: "dashboard"
+
+<RegistrationWindow>:
+	canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+			
+	orientation: "vertical"
+	spacing: 10
+	id: main
+
+	GridLayout:
+		center: root.center
+		cols:1
+		height:300
+		size_hint_y: None
+		width: 400
+		size_hint_x: None
+	
+		GridLayout:
+			size_hint_y: None
+			height: 50
+			cols:2
+			canvas.before:
+        		Color:
+            		rgba: 0, 0, 0, 1
+				Rectangle:
+            		pos: self.pos
+            		size: self.size
+			Label:
+				size_hint_x: .95
+				text: "Register Here:"
+				spacing: 10
+				bold: True
+				size_hint_x : .9
+			Button:
+				text: "x"
+				size_hint_x: .05
+				on_press: app.root.current = "main"
+				background_color: 0, 0, 0, 1
+
+		GridLayout:
+			size_hint_y: None
+			height: 50
+			cols:1
+			TextInput:
+				id: user
+				multiline : False
+				hint_text: "Username:"
+				spacing: 40
+
+		GridLayout:
+			size_hint_y: None
+			height: 50
+			cols:1
+			TextInput:
+				id: password
+				password: True
+				multiline : False
+				hint_text: "Password:"
+			
+				
+		GridLayout:
+			cols:1
+			size_hint_y: None
+			height: 50
+			Button:
+				text: "Register"
+				on_press: 
+					root.register(user.text, password.text)
+		GridLayout:
+			cols:1
+			size_hint_y: None
+			height: 50
+			Button:
+			
+				text: "Already have an account? Sign in here"
+				on_press: app.root.current = "login"
+		
+		GridLayout:
+			cols:1
+			canvas.before:
+        		Color:
+            		rgba: 0, 0, 0, 1
+        		Rectangle:
+            		pos: self.pos
+            		size: self.size
+			size_hint_y: None
+			height: 50
+			Label:
+				id: register_message
+				text: ""
+			
+<LoginWindow>:
+	orientation: "vertical"
+	spacing: 10
+	id: login
+	GridLayout:
+		cols:1
+
+		GridLayout:
+			size_hint_y: None
+			height: 50
+			cols:2
+			Label:
+				size_hint_x: .95
+				text: "Sign in Page:"
+				spacing: 10
+				bold: True
+				color: 1,1,1,1
+				
+			Button:
+				text: "x"
+				size_hint_x: .05
+				on_press: app.root.current = "main"
+				background_color: 0, 0, 0, 1
+	
+		GridLayout:
+			size_hint_y: None
+			height: 50
+			cols:1
+			TextInput:
+				id: user
+				multiline : False
+				hint_text: "Username:"
+				spacing: 40
+
+		GridLayout:
+			size_hint_y: None
+			height: 50
+			cols:1
+			TextInput:
+				id: password
+				password: True
+				multiline : False
+				hint_text: "Password:"
+				spacing: 10
+						
+		GridLayout:
+			cols:2
+			size_hint_y: None
+			height: 50
+			Button:
+				text: "Sign in"
+				on_press: 
+					root.authenticate(user.text, password.text)
+				spacing: 10
+
+		GridLayout:
+			size_hint_y: None
+			height: 50
+			cols:1
+			Label:
+				id: message
+				text: ""
+
+<DashboardWindow>:
+	orientation: "vertical"
+	spacing: 10
+	id: dashboard
+	GridLayout:
+		cols:1
+
+		GridLayout:
+			size_hint_y: None
+			size_hint_x: .95
+			height: 50
+			cols:2
+			Label:
+				text: "Welcome Dear User"
+				spacing: 10
+				bold: True
+				id: welcome
+				color: 1,1,1,1
+				size_hint_x : .9
+
+			Button:
+				text: "x"
+				size_hint_x: .05
+				on_press: app.root.current = "main"
+				background_color: 0, 0, 0, 1
+			
+		GridLayout:
+			size_hint_y: None
+			height: 50
+			cols:1
+			TextInput:
+				id: country
+				multiline : False
+				hint_text: "Enter the Country:"
+				spacing: 40
+		
+
+				
+		GridLayout:
+			cols:1
+			size_hint_y: None
+			height: 50
+			Button:
+				text: "Search Country"
+				on_press: 
+					root.search_country(country.text)
+				spacing: 10
+
+		GridLayout:
+			cols:1
+			Label:
+				id: founded_countries
+				text: ""
